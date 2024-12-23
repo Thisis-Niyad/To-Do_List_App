@@ -1,4 +1,4 @@
-import { Taskdeletion, background, Dalert,movetouch,endtouch,dropevent, dragStarted, starttouch } from "./module.mjs";
+import { Taskdeletion, background, Dalert,movetouch,endtouch,dropevent, dragStarted, starttouch } from "./ToDo-vaultModule.mjs";
 document.addEventListener('DOMContentLoaded', () => {
     function createDropdownContent() {
         const dropdownContent = document.createElement('div');
