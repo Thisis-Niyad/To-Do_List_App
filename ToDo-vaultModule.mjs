@@ -1,4 +1,4 @@
-export function Taskdeletion(event) {
+export function Taskdeletion() {
     event.preventDefault();
     const deletetask = document.querySelector('.highlighted');
     if (deletetask != null) {
@@ -48,6 +48,9 @@ export function Dalert(event) {
         const parent = this.parentElement;
         const grandparent = parent.parentElement;
         grandparent.parentElement.remove();
+        let addmsg = document.querySelectorAll(".add-card-message ")
+        let ids = addmsg[addmsg.length - 1]
+        ids.id = Number(ids.id) - 1
     }
 
 }

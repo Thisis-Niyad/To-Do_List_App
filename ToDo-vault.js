@@ -1,72 +1,15 @@
 import { Taskdeletion, background, Dalert, movetouch, endtouch, dropevent, dragStarted, starttouch } from "./ToDo-vaultModule.mjs";
-document.addEventListener('DOMContentLoaded', () => {
-    function createDropdownContent() {
-        const dropdownContent = document.createElement('div');
-        dropdownContent.id = 'dropdownContent';
-        dropdownContent.className = 'dropdown-content';
 
-        const deletion = document.createElement('div');
-        deletion.onclick = Taskdeletion;
-
-        const cancelIcon = document.createElement('i');
-        cancelIcon.className = 'fas fa-2x fa-times add-card-cancel';
-        deletion.innerText = 'Delete selected task';
-
-        const move = document.createElement('div');
-
-        const moveIcon = document.createElement('i');
-        moveIcon.className = 'fas fa-arrows-alt';
-        move.innerText = 'Move selected task';
-        move.onclick = () => { dropdownContent.classList.remove('show') };
-
-        const div = document.createElement('div')
-        const hselect = document.createElement('select');
-        const option = document.querySelectorAll('.task-list-title');
-        option.forEach(element => {
-            let opt = document.createElement('option');
-            opt.textContent = element.textContent;
-            hselect.appendChild(opt);
-        });
-        div.appendChild(hselect);
-
-        const save = document.createElement('div');
-        save.onclick = saveBoard;
-        const saveIcon = document.createElement('i');
-        saveIcon.className = 'fas fa-save';
-        save.innerText = 'Save Board';
-        save.style.width = '-webkit-fill-available';
-
-        move.appendChild(moveIcon);
-        deletion.appendChild(cancelIcon);
-        save.appendChild(saveIcon);
-
-        dropdownContent.appendChild(deletion);
-        dropdownContent.appendChild(move);
-        dropdownContent.appendChild(div);
-        dropdownContent.appendChild(save);
-
-        return dropdownContent;
-    }
-    const dropdown = document.querySelector('.dropdown');
-    const dropdownContent = createDropdownContent();
-    dropdown.appendChild(dropdownContent);
-
-    const dropdownButton = document.getElementById('dropdownButton');
-    dropdownButton.addEventListener('click', () => {
-        dropdownContent.classList.toggle('show');
-    });
-
-    dropdownContent.addEventListener('click', (event) => {
-        if (event.target.matches('div[data-value]')) {
-            const selectedValue = event.target.getAttribute('data-value');
-            dropdownButton.textContent = event.target.textContent;
-            dropdownContent.classList.remove('show');
-        }
-    });
+const dropdownContent = document.querySelector('#dropdownContent')
+const dropdownButton = document.getElementById('dropdownButton');
+dropdownButton.addEventListener('click', () => {
+    dropdownContent.classList.toggle('show');
 });
 
-function saveBoard(event) {
-    event.preventDefault();
+document.getElementById('deleteBtn').addEventListener('click', Taskdeletion);
+document.getElementById('saveBoard').addEventListener('click', saveBoard);
+
+function saveBoard() {
     const dragdrop = document.querySelectorAll('.dragdrop');
     const title = document.querySelectorAll('.task-list-title');
     jsonData.taskLists = [];
